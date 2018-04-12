@@ -1,0 +1,30 @@
+body {
+	height: 100vh;
+}
+
+.player {
+	height: 20vh;
+	background-color:#339933;
+}
+
+.board {
+	height: 60vh;
+}
+
+.table {
+	width: 100%;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.table td {  
+    vertical-align: middle;
+    text-align: center; 
+    widows: 30%; 
+}
+
+.table img {  
+	width: 100%;
+}
+
