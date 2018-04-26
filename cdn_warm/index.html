@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="./js/jquery-3.3.1.min.js"></script>
+    <style>
+textarea {
+    width: 100%;
+}
+.url_area {
+    padding: 10px;
+}
+
+.pictures {
+    padding: 10px;
+}
+
+img{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+table {
+    border: 1px solid #151515;
+}
+
+    </style>
+    <title>CDN 预热</title>
+</head>
+<body>
+	<div class="url_area">
+        <h5>URL地址（每行一个URL）</h5>
+        <textarea id="urls" rows="10"></textarea>
+        <button class="warm_button">URL 预热</button>
+    </div>
+    <div class="pictures"></div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".warm_button").click(function() {
+            urls = $("#urls").val().split("\n")
+            console.log(urls)
+            if (urls.length == 0) {
+                alert("请输入URL")
+            } else {
+                warm_urls(urls)
+            }
+
+        })
+    })
+
+    function warm_urls(urls) {
+        $(".pictures").html("")
+        for(j = 0; j < urls.length; j++) {
+            console.log(urls[j])
+            render_url_pic(j, urls[j])
+        }
+    }
+    
+    function render_url_pic(index, url) {
+        $(".pictures").append("<div id=\"index" + index +"\"></div>")
+        $("#index" + index).append("<h5>"+url+"</h5>")
+        $("#index" + index).append("<table id=\"table" + index +"\" border='1'></table>")
+
+        var formats = ["128x128","180x180","480x480","640x640","blur","blurRetina","max_180xX","max_480xX","max_640xX","max_720xX","max_960xX"]
+
+        $("#table" + index).append("<tr id='tr" + index + "_1" + "'></tr>")
+        for(i = 0; i < formats.length; i++) {
+            var td = '<td><h6>' + formats[i] + '</h6></td>';
+            $("#tr"+index + "_1").append(td);
+        }
+
+        $("#table" + index).append("<tr id='tr" + index + "_2" + "'></tr>")
+        for(i = 0; i < formats.length; i++) {
+            imgUrl = url + "?format=" + formats[i]
+            var td = '<td><img src="'+ imgUrl + '"></td>';
+            $("#tr"+index + "_2").append(td);
+        }
+
+    }
+    
+</script>
+</html>
