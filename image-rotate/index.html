@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>图片旋转</title>
+	<script Language="JavaScript" src="jquery-3.3.1.min.js"></script>
+	<script Language="JavaScript" src="jQueryRotate.js"></script>
+
+</head>
+<body>
+	<script type="text/javascript">
+		var angle = 0
+		$(document).ready(function(){
+			for (i = 0; i < 3600; i++ ){
+				setTimeout( function(){
+					$("img").rotate(angle);
+					angle += 0.1;
+			 	}, i * 10)
+			}
+
+		})
+	</script>
+	<img id="img" src="young-il-choi-.jpg">
+</body>
+</html>
